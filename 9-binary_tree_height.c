@@ -6,6 +6,7 @@
  *post-order traversal
  * @tree: pointer to root node of the concern tree
  * Return: the hight of a binary tree
+ * عظمة يا رايق:man_bowing:
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
@@ -20,7 +21,7 @@ size_t binary_tree_height(const binary_tree_t *tree)
 	if (tree->right)
 		num2 = 1 + binary_tree_height(tree->right);
 
-	return (max(num1, num2));
+	return (_max(num1, num2));
 }
 /**
  * max - function that return the bigger value
