@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
+#include "binary_trees.h"
 
 /**
  * print_num - Prints a number
