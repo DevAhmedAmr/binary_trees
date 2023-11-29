@@ -24,7 +24,7 @@ size_t binary_tree_height(const binary_tree_t *tree)
 	return (_max(num1, num2));
 }
 /**
- * max - function that return the bigger value
+ * _max - function that return the bigger value
  * @num1: first number
  * @num2: second number
  * Return: the bigger value
