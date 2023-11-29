@@ -51,5 +51,5 @@ binary_tree_t *binary_tree_sibling(binary_tree_t *node);
 binary_tree_t *binary_tree_uncle(binary_tree_t *node);
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 									 const binary_tree_t *second);
-size_t max(size_t num1, size_t num2);
+size_t _max(size_t num1, size_t num2);
 #endif

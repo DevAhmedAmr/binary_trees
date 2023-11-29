@@ -28,7 +28,7 @@ size_t binary_tree_height(const binary_tree_t *tree)
  * @num2: second number
  * Return: the bigger value
  */
-size_t max(size_t num1, size_t num2)
+size_t  _max(size_t num1, size_t num2)
 {
 	if (num1 > num2)
 		return (num1);
