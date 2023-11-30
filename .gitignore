@@ -1,6 +1,7 @@
 .vscode/
 __pycache__/
 .git/
+*main.c
 # Ignore all files except those ending with .c or .h
 *
 !*.c
