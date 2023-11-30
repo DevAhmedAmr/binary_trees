@@ -1,9 +1,14 @@
 .vscode/
 __pycache__/
-.git/
+# Ignore main.c
+main.c
 
-# Ignore all files except those ending with .c or .h
-*
-!*.c
-!*.h
-*main.c/
+# Ignore executables
+*.exe
+*.out
+*.so
+*.dll
+
+# Ignore text files
+*.txt
+*.md
