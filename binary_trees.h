@@ -13,6 +13,8 @@
  * @left: Pointer to the left child node
  * @right: Pointer to the right child node
  */
+#define DEBUG  printf("%s:%d\n", __FILE__, __LINE__);
+
 typedef struct binary_tree_s
 {
 	int n;
