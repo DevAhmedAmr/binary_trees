@@ -10,18 +10,15 @@
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	size_t num1 = 0, num2 = 0;
+	size_t right_height = 0, left_height = 0;
 
 	if (!tree)
-		return (0);
+		return (-1);
 
-	if (tree->left)
-		num1 = 1 + binary_tree_height(tree->left);
+	right_height += binary_tree_height(tree->left) + 1;
+	left_height += binary_tree_height(tree->right) + 1;
 
-	if (tree->right)
-		num2 = 1 + binary_tree_height(tree->right);
-
-	return (_max(num1, num2));
+	return right_height > left_height ? right_height : left_height;
 }
 /**
  * _max - function that return the bigger value
@@ -29,7 +26,7 @@ size_t binary_tree_height(const binary_tree_t *tree)
  * @num2: second number
  * Return: the bigger value
  */
-size_t  _max(size_t num1, size_t num2)
+size_t _max(size_t num1, size_t num2)
 {
 	if (num1 > num2)
 		return (num1);
