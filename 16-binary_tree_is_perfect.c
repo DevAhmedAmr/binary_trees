@@ -25,7 +25,8 @@ int recCheck(const binary_tree_t *tree)
 {
 	if (!tree)
 		return (1);
-	if ((!tree->right && tree->left) || (tree->right && !tree->left) || recCheck(tree->left) == 0 || recCheck(tree->right) == 0)
+	if ((!tree->right && tree->left) || (tree->right && !tree->left) ||
+		recCheck(tree->left) == 0 || recCheck(tree->right) == 0)
 		return (0);
 	return (1);
 }
