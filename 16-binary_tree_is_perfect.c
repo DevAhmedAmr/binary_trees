@@ -34,7 +34,6 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	unsigned int node_count = count_nodes(tree);
 	unsigned int height = binary_tree_height(tree);
 
-	// Calculate the maximum number of nodes for a perfect binary tree
 	unsigned int max_nodes = (1 << (height + 1)) - 1;
 
 	return (node_count == max_nodes);
