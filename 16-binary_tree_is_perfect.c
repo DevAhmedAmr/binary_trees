@@ -1,113 +1,68 @@
 #include "binary_trees.h"
-
-int recCheck(const binary_tree_t *tree);
-/**
- * binary_tree_is_full -  checks if a concern binary tree is full
- * @tree: pointer to root node of the concern tree
- * Return: number of nodes that has to child if it parent or no
- * child if it leaves ,(0) if tree pointer is NULL
- */
-
-int binary_tree_is_full(const binary_tree_t *tree)
+int get_level(const binary_tree_t *root);
+int get_height(const binary_tree_t *root)
 {
-	if (!tree)
-		return (0);
-	return (recCheck(tree));
+	if (root == NULL)
+		return 0;
+
+	int left_height = get_height(root->left);
+	int right_height = get_height(root->right);
+
+	if (left_height > right_height)
+
+		return left_height + 1;
+	else
+		return right_height + 1;
 }
 
-/**
- * recCheck - use recursion to check that all tree node is
- * full parent nodes or leaves .
- * @tree: A pointer to the root node of concern tree list.
- * Return: (1)If tree is full, (0).Otherwise .
- */
-int recCheck(const binary_tree_t *tree)
+int is_all_leaves_at_same_level(const binary_tree_t *root, int leaf_level)
 {
-	if (!tree)
-		return (1);
-	if ((!tree->right && tree->left) || (tree->right && !tree->left) ||
-		recCheck(tree->left) == 0 || recCheck(tree->right) == 0)
-		return (0);
-	return (1);
-}
+	int current_level;
 
-/**
- * _max - function that return the bigger value
- * @num1: first number
- * @num2: second number
- * Return: the bigger value
- */
-size_t _max(size_t num1, size_t num2)
-{
-	if (num1 > num2)
-		return (num1);
-
-	return (num2);
-}
-
-/**
- * binary_tree_height - goes through a binary tree using
- *post-order traversal
- * @tree: pointer to root node of the concern tree
- * Return: the hight of a binary tree
- * عظمة يا رايق:man_bowing:
- */
-size_t binary_tree_height(const binary_tree_t *tree)
-{
-	size_t num1 = 0, num2 = 0;
-
-	if (!tree)
-		return (0);
-
-	if (tree->left)
-		num1 = 1 + binary_tree_height(tree->left);
-
-	if (tree->right)
-		num2 = 1 + binary_tree_height(tree->right);
-
-	return (_max(num1, num2));
-}
-/**
- * binary_tree_balance - measures the balance factor of a binary tree
- *post-order traversal
- * @tree: pointer to root node of the concern tree
- * Return:  balance factor, (0) if tree is NULL
- * عظمة يا رايق:man_bowing:
- */
-int binary_tree_balance(const binary_tree_t *tree)
-{
-	size_t LEFT = 0, RIGHT = 0;
-
-	if (!tree)
-		return (0);
-
-	if (tree->left)
+	if (root == NULL)
 	{
-		LEFT = 1 + binary_tree_height(tree->left);
-	}
-	if (tree->right)
-	{
-		RIGHT = 1 + binary_tree_height(tree->right);
+		return 1;
 	}
 
-	return (LEFT - RIGHT);
+	current_level = get_level(root);
+
+	if (current_level != leaf_level)
+		return 0;
+
+	return is_all_leaves_at_same_level(root->left, leaf_level) &&
+		   is_all_leaves_at_same_level(root->right, leaf_level);
 }
 
-/**
- * binary_tree_is_perfect - checks if a binary tree is perfect
- *
- * @tree: pointer to concern tree
- * Return: (1) if tree if perfect (0) otherwise
- */
+int get_level(const binary_tree_t *root)
+{
+	int right_level, left_level;
+
+	if (root == NULL)
+
+		return 0;
+
+	left_level = get_level(root->left);
+	right_level = get_level(root->right);
+
+	if (left_level > right_level)
+
+		return left_level + 1;
+
+	else
+
+		return right_level + 1;
+}
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	if (!tree)
-		return (0);
-	if (binary_tree_height(tree->left) != binary_tree_height(tree->right))
-		return (0);
-	if (!tree->left && !tree->right)
-		return (1);
-	if (binary_tree_balance(tree) == 0 && binary_tree_is_full(tree))
-		return (1);
-	return (0);
+	int height, leaf_level;
+
+	if (tree == NULL)
+	{
+		return 1;
+	}
+
+	height = get_height(tree);
+	leaf_level = height;
+
+	return is_all_leaves_at_same_level(tree, leaf_level);
 }
