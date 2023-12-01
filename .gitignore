@@ -1,7 +1,6 @@
 .vscode/
 __pycache__/
 # Ignore main.c
-*main.c
 
 # Ignore executables
 *.exe
@@ -11,4 +10,3 @@ __pycache__/
 
 # Ignore text files
 *.txt
-*.md
