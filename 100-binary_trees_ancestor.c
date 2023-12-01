@@ -8,31 +8,17 @@
  * of the two  given nodes
  * (NULL) If no common ancestor was found, your
  */
-binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
-		const binary_tree_t *second)
+binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second)
 {
-	binary_tree_t *reload;
+	binary_tree_t *tmp_f, *tmp_s;
 
-	if (!first && !second)
-		return (NULL);
+	if (!first || !second)
+		return (0);
 
-	while (first)
-	{
-		reload = (binary_tree_t *)second;
-		while (second)
-		{
-			if (first == second)
-				return ((binary_tree_t *)first);
-			if (second->parent)
-				second = second->parent;
-			else
-				break;
-		}
-		second = reload;
-		if (first->parent)
-			first = first->parent;
-		else
-			break;
-	}
-	return (NULL);
+	for (tmp_f = first->parent; tmp_f; tmp_f = tmp_f->parent)
+		for (tmp_s = second->parent; tmp_s; tmp_s = tmp_s->parent)
+			if (tmp_f == tmp_s)
+				return (tmp_f);
+
+	return (0);
 }
