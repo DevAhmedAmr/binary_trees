@@ -8,7 +8,8 @@
  * of the two  given nodes
  * (NULL) If no common ancestor was found, your
  */
-binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second)
+binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
+				const binary_tree_t *second)
 {
 	binary_tree_t *tmp_f, *tmp_s;
 
