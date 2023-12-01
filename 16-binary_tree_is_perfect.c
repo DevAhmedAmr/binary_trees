@@ -4,7 +4,7 @@
 
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	size_t num1 = 1, num2 = 1;
+	size_t num1 = 0, num2 = 0;
 
 	if (!tree)
 		return (0);
@@ -17,7 +17,25 @@ size_t binary_tree_height(const binary_tree_t *tree)
 
 	return num1 > num2 ? num1 : num2;
 }
+
+int count_nodes(const binary_tree_t *tree)
+{
+	if (!tree)
+		return 0;
+
+	return 1 + count_nodes(tree->left) + count_nodes(tree->right);
+}
+
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	return binary_tree_height(tree->left) >= binary_tree_height(tree->right);
+	if (!tree)
+		return 1;
+
+	unsigned int node_count = count_nodes(tree);
+	unsigned int height = binary_tree_height(tree);
+
+	// Calculate the maximum number of nodes for a perfect binary tree
+	unsigned int max_nodes = (1 << (height + 1)) - 1;
+
+	return (node_count == max_nodes);
 }
